@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arco World Cup</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="Fonts/font-awesome-4.6.3/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="./parallax.js-1.4.2/parallax.min.js"></script>
+    <link rel="icon" href="images/backing/logoImg.png">
+</head>
+<style>
+    .row{
+        margin: 0;
+    }
+    .col-md-12{
+        padding: 0;
+    }
+    .col-md-10{
+        padding: 0;
+    }
+    .col-md-1{
+        padding: 0;
+    }
+    .col-md-2{
+        padding: 0;
+    }
+    .col-md-4{
+        padding: 0;
+    }
+    .col-md-5{
+        padding: 0;
+    }
+    .col-md-7{
+        padding: 0;
+    }
+    .col-md-6{
+        padding: 0;
+    }
+    @font-face {
+        font-family: SugarCubes;
+        src: url(Fonts/sugarcubes/SugarcubesRegular.ttf)
+    }
+    @font-face {
+        font-family: FontAwesome;
+        src: url(Fonts/font-awesome-4.6.3/fonts/fontawesome-webfont.ttf);
+    }
+    @font-face {
+        font-family: OpenSans;
+        src: url(Fonts/open-sans/OpenSans-Regular.ttf);
+    }
+    @font-face {
+        font-family: OpenSansBold;
+        src: url(Fonts/open-sans/OpenSans-Bold.ttf);
+    }
+    h1{
+        font-family: SugarCubes;
+        font-size: 39pt;
+        color: white;
+        margin-bottom: 20px;
+    }
+    h2{
+        font-family: OpenSansBold;
+        font-size: 12pt;
+        color: white;
+        margin-top: 30px;
+    }
+    h3{
+        font-family: OpenSans;
+        font-size: 12pt;
+        color: white;
+        opacity: 0.75;
+    }
+    h4{
+        font-size: 20pt;
+        color: white;
+        margin-top: 60px;
+        margin-bottom: 20px;
+    }
+    p{
+        font-family: OpenSans;
+        font-size: 16pt;
+        color: white;
+        margin-top: 30px;
+    }
+    .parallax-container {
+        min-height: 400px;
+        background: transparent;
+    }
+    body{
+        background-color: #ebeced;;
+    }
+    div.button{
+        height: 80px;
+        width: 180px;
+        border: 5px solid white;
+    }
+    div.contact{
+        text-align: center;
+        height: 200px;
+        width:200px;
+        border: 8px solid white;
+    }
+    .fixed-nav-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        width: 100%;
+    }
+    div.button:hover .glyphicon, .glyphicon:hover{
+        transition: color .5s ease-out;
+        color: black !important;
+        opacity: 0.66;
+    }
+    div.button:hover{
+        background-color: rgba(255,255,255,0.5);
+        border: 5px solid rgba(255,255,255,0);
+        transition: background-color 0.4s ease-out, border 0.4s ease-out;
+    }
+    #sponsors{
+        text-align: justify;
+    }
+    #sponsors:after{
+        content: '';
+        width:100%;
+        display: inline-block;
+        font-size: 0;
+        line-height: 0;
+    }
+    div.sponsor{
+        display: inline-block;
+        text-align: center;
+    }
+    .logo{
+        height: 100px;
+        width: 92.5px;
+        background-color: #e74d45;
+        margin-right: 92.5px;
+        float: right
+    }
+    div.btnAng{
+        background-color: #e74d45;
+        transform:skew(-20deg, 0deg);
+        width: 50px;
+        height: 44px;
+        display: inline-block;
+        float: left;
+    }
+    div.btnCor{
+        background-color: #e74d45;
+        position: absolute;
+        padding-left: 10px;
+        padding-top: 4px;
+        height: 44px;
+        width: 30px;
+        transform: skew(20deg, 0deg);
+    }
+    .menuContainer {
+        display: inline-block;
+        cursor: pointer;
+        position: absolute;
+    }
+
+    .bar1, .bar2, .bar3 {
+        width: 33px;
+        height: 4px;
+        background-color: #1a212c;
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+    .bar2{
+        width: 28px;
+    }
+    .bar3{
+        width: 24px;;
+    }
+    .header{
+        height: 44px;
+        width: 100%;
+        background-color: #1a212c;
+        display: inline-block;
+        display: none;
+        transition: 0.3s;
+        position: absolute;
+        z-index:-99;
+    }
+    .change .bar1 {
+        -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+        transform: rotate(-45deg) translate(-9px, 6px) ;
+    }
+
+    .change .bar2 {opacity: 0;}
+
+    .change .bar3 {
+        width: 33px;
+        -webkit-transform: rotate(45deg) translate(-8px, -6px) ;
+        transform: rotate(45deg) translate(-8px, -6px) ;
+    }
+    ul{
+        list-style-type: none;
+    }
+    li{
+        float: left;
+    }
+    li a{
+        display: inline-block;
+        font-family: OpenSans;
+        font-size: 11pt;
+        color:rgba(255,255,255,0.7);
+        text-decoration: none;
+        padding-left: 50px;
+        padding-top: 10px;
+    }
+    li a:hover{
+        color: rgba(225,225,225,1);
+        text-decoration: none;
+    }
+    li a.active{
+        color:rgba(225,225,225,1);
+    }
+    body{
+        background-color: #222222;
+    }
+    @font-face {
+        font-family: CodeLight;
+        src: url(Fonts/code-light/CODE-Light.otf);
+    }
+    p.logoFooter{
+        font-family: CodeLight;
+        font-size: 11pt;
+        color: #1d1f2b;
+        font-weight: bolder;
+        text-align: center;
+        margin-top: 6px;
+    }
+    .logo{
+        height: 100px;
+        width: 92.5px;
+        background-color: #e74d45;
+        margin-right: 92.5px;
+        float: right;
+        padding-top: 11px;
+    }
+</style>
+<script>
+    function menu(x){
+        x.classList.toggle("change");
+        $('.header').toggle();
+    }
+</script>
+<body>
+<nav class="fixed-nav-bar">
+    <div class="row">
+        <div class="menuContainer" onclick="menu(this)">
+            <div class="btnAng">
+                <div class="btnCor">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="header">
+            <ul>
+                <li><a href="home.html">HOME</a></li>
+                <li><a href="fpost.html"> FEATURED POST</a></li>
+                <li><a href="blog.html">BLOG</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
+            </ul>
+        </div>
+    </div>
+    <a href="home.html">
+        <div class="logo">
+            <img src="images/backing/logoImg.png" style="display: block; margin: auto">
+            <p class="logoFooter">CONNOR BYRNE</p>
+        </div>
+    </a>
+</nav>
+
+<div class=".container">
+    <div class="row" style="height: 130px; background-color: #222222;"></div>
+    <div class="row" style="height: 80px; background-color: #222222">
+            <div class="col-md-8 col-md-offset-1" style="background-color: #e74d45; opacity:0.9; height: 80px">
+                <div class="col-md-12">
+                    <div class="row" style="height: 80px;">
+                        <div class="col-md-7 col-md-offset-1">
+                            <h2>FEATURED BLOG</h2>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+<div class=".container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="parallax-container" data-parallax="scroll" data-position="top" data-bleed="100" data-image-src="./images/gallery/ChinaBlog/ChinaBack3.jpg" data-natural-width="3236" data-natural-height="3452" style="height: 8100px;">
+                <div class="col-md-8 col-md-offset-1" style="background-color: rgba(231,77,69,0.9); min-height: 8100px;">
+                    <div class="col-md-12">
+                        <div class="col-md-7 col-md-offset-1">
+                            <div class="row" style="height: 40px">
+                                <h3>6th January 2017</h3>
+                            </div>
+                            <div class="row" style="height: 80px; margin-bottom: 20px; display: inline-block;">
+                                <h1>China – World Universities Climbing Competition</h1>
+                            </div>
+                            <div class="row">
+                                <p>
+                                    Firstly a massive thank you to Sports Sheffield, for organising the funding and apologies for taking so long getting the blog out.  I had decided to create a new website and felt the China blog would be a fantastic first blog. Hopefully you will enjoy the new website, there are a few bits I want to improve on.
+                                </p>
+                                <p>
+                                    The plan was hatched after the success of Sheffield University at the European Championships to put a GB team in for The Universities World Championships.  With the help of Steve from Sheffield Sport, the BUCS organisation and the BMC a team was selected being Jen Wood, Luke Dawson, Billy Ridal, myself and team manager Steve from Sheffield Sport. There was a final rush sorting my visa as I needed my passport for Italy, (IFSC World Cup in Arco).  We had decided the team would take part in the super combined event by everyone taking part in Speed, Boulder and Lead.  BUCS supplied us with an awesome kit, which arrived a week before we were due to leave and the excitement was building.
+                                </p>
+                                <img src="images/gallery/ChinaBlog/kit.jpg-large" style="margin-top: 30px; margin-bottom: 15px; opacity: 1; width: 74%">
+
+                                <h4>Day 1</h4>
+                                <p>
+                                    Our hearts sank when we got to customs in Shanghai, after 20 hours of travel customs was rammed, it looked like we would be a long time.  However, we had travelled I our GB kit and we were spotted by officials who waved through without queuing!  I was liking China already. After a short wait for another team we were bussed to our accommodation.  Very smooth and efficient.  Our accommodation was superb, I’m really liking China.
+                                </p>
+
+
+                                <p>
+                                    As our flight had landed at 7am we planned to work off the jet lag by touring the university campus where the comp was held.  We were designated two volunteer 'minders' who helped show us around and watched us like hawks around the state owned campus. Their English was excellent and they were with us whenever we were on campus, and became part of our team cheering us on.
+                                </p>
+                                <img src="images/gallery/ChinaBlog/team.jpg" style="margin-top: 30px; margin-bottom: 15px; opacity: 1; width: 74%">
+
+                                <h4> Day 2</h4>
+                                <p>
+                                    Was a free day so we took a trip into Shanghai, travelling by commenter train for that authentic Chinese experience.
+                                </p>
+                                <img src="images/gallery/ChinaBlog/shanghai.JPG" style="margin-top: 30px; margin-bottom: 15px; opacity: 1; width: 74%">
+
+                                <p>
+                                    Shanghai was very impressive, modern vibrant city with a twist of a different culture.
+
+                                </p>
+                                <h4>Day 3</h4>
+                                <p>The Speed comp, and our first chance of seeing the wall.  Pretty good looking wall, interestingly painted in gloss.  The paint caused some surprises and problems as speed climbers are used to slightly more friction.  A new PB for me on the speed wall, or should I say my first official time on a full official wall.  The men's speed comp was dominated by Marcin Dzienski (Pol) and Stanislav Kokorin (Rus) currently ranked 1st and 2nd on the World Senior Circuit.</p>
+                                <h4>Day 4</h4>
+                                <p>Was a busy one, we fuelled up on a tasty breakfast of cakes and pastries instead of the more exotic rice porridge,  then off for lead qualifiers followed by bouldering qualifiers.</p>
+                                <p>Lead qualifiers – as usual I was first competitor to climber on one of the routes, and got a top, pretty good start to the day, the day went well with another double top. There were a few others qualify with double tops.  By lunch time all GB had made it through to the lead semis.</p>
+                                <img src="images/gallery/ChinaBlog/q2.JPG" style="margin-top: 30px; margin-bottom: 15px; opacity: 1; width: 74%">
+                                <img src="images/gallery/ChinaBlog/board.JPG" style="margin-top: 30px; margin-bottom: 15px; opacity: 1; width: 74%">
+                                <p>
+                                    Bouldering qualifiers – the format was all from isolation, I was a little nervous as I'm not the best at reading problems.  I gave it my all; I was delighted to make semis. This was my first time I had ever bouldered  under  full international rules for qualifiers.
+                                </p>
+                                <img src="images/gallery/ChinaBlog/boulderingq.JPG" style="margin-top: 30px; margin-bottom: 15px; opacity: 1; width: 74%">
+
+                                <p>
+                                    After hearing horror stories of Chinese food I was pleasantly surprised. We had been eating at the Uni where the quality of the food was excellent.  Noodles were impressively made freshly in front of us.  Chopsticks for noodle soup was a challenge though.
+                                </p>
+                                <img src="images/gallery/ChinaBlog/soup.JPG" style="margin-top: 30px; margin-bottom: 15px; opacity: 1; width: 74%">
+                                <h4>Day 5</h4>
+                                <p>First came the lead semis, I climbed like an idiot, I think the whole China thing had started to get to me.  Even if I had climbed better making the finals would have been a tough feat.  I just would have liked to have climbed better, putting the disappointment aside I focused on the bouldering semis.</p>
+                                <p>The blocs in the bouldering final were really hard, but I was really psyched to be there.</p>
+                                <img src="images/gallery/ChinaBlog/bsemi.JPG" style="margin-top: 30px; margin-bottom: 15px; opacity: 1; width: 74%">
+                                <h4>Day 6 and 7 finals, and closing ceremony</h4>
+                                <p>Jen had made the females final for both events, so we all gave her support, it was really exciting to have a team member in the finals.  I was really pleased to find I was 10th overall in the super combined event.  </p>
+                                <img src="images/gallery/ChinaBlog/finalsteam.jpg" style="margin-top: 30px; margin-bottom: 15px; opacity: 1; width: 74%">
+                                <p>We took one final trip in to Shanghai for the evening.  </p>
+                                <img src="images/gallery/ChinaBlog/night.jpg" style="margin-top: 30px; margin-bottom: 15px; opacity: 1; width: 74%;">
+                                <p>Upon reflection I had set myself goals to make the semis in both Lead and Boulder which I achieved, and a PB on the speed wall.  The quality of competitors was very high with the finals being full of highly ranked World Senior Climbers who regularly make finals and podiums on the world senior circuit. It had been a fantastic way to compete against some of the world’s best.  I have come back full of enthusiasm and confidence on how to improve.  </p>
+                                <p>China had been a brilliant experience, the scale of Shanghai was insane, the people were very friendly, extremely helpful showing us round their country, which was immaculately clean.   Thank you so much to all the people who made it possible, especially the sponsors.  BUCS, Sports Sheffield, the University of Sheffield and Beyond Hope.</p>
+                                <p>I was delighted to find out whilst I was out in China I have been awarded the ESPS grant for the third year.  A massive thank you and I hope I can continue to do the award justice.  </p>
+                            </div>
+                            <div class="row" style="height: 100px; padding-top: 30px; margin-bottom: 20px;">
+                                <a href="blog.html">
+                                    <div class="button">
+                                        <span class="glyphicon glyphicon-menu-left" style="font-size: 26pt; margin-top: 18px; margin-left: 10px; color: white;"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class=".container">
+    <div class="row">
+        <div class="col-md-12" style="background-color: #222f3f; padding-top: 30px; padding-bottom: 20px; padding-right: 150px; padding-left: 150px;">
+            <div id="sponsors">
+                <div class="sponsor">
+                    <img src="images/backing/evolv-logo.png" style="width: 100px;">
+                </div>
+                <div class="sponsor">
+                    <img src="images/backing/Metolius_Logo_BW.png" style="width: 100px;">
+                </div>
+                <div class="sponsor">
+                    <img src="images/backing/prana-id-c6455b3cd8762a22.jpg.png" style="width: 100px;">
+                </div>
+                <div class="sponsor">
+                    <img src="images/backing/SportSheff.png" style="width: 100px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class=".container">
+        <div class="row" style="height: 60px; background-color: #222222;"></div>
+</div>
+</body>
+</html>

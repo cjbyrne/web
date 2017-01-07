@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EUG 2016</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="Fonts/font-awesome-4.6.3/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="./parallax.js-1.4.2/parallax.min.js"></script>
+    <link rel="icon" href="images/backing/logoImg.png">
+</head>
+<style>
+    .row{
+        margin: 0;
+    }
+    .col-md-12{
+        padding: 0;
+    }
+    .col-md-10{
+        padding: 0;
+    }
+    .col-md-1{
+        padding: 0;
+    }
+    .col-md-2{
+        padding: 0;
+    }
+    .col-md-4{
+        padding: 0;
+    }
+    .col-md-5{
+        padding: 0;
+    }
+    .col-md-7{
+        padding: 0;
+    }
+    .col-md-6{
+        padding: 0;
+    }
+    @font-face {
+        font-family: SugarCubes;
+        src: url(Fonts/sugarcubes/SugarcubesRegular.ttf)
+    }
+    @font-face {
+        font-family: FontAwesome;
+        src: url(Fonts/font-awesome-4.6.3/fonts/fontawesome-webfont.ttf);
+    }
+    @font-face {
+        font-family: OpenSans;
+        src: url(Fonts/open-sans/OpenSans-Regular.ttf);
+    }
+    @font-face {
+        font-family: OpenSansBold;
+        src: url(Fonts/open-sans/OpenSans-Bold.ttf);
+    }
+    h1{
+        font-family: SugarCubes;
+        font-size: 39pt;
+        color: white;
+        margin-bottom: 20px;
+    }
+    h2{
+        font-family: OpenSansBold;
+        font-size: 12pt;
+        color: white;
+        margin-top: 30px;
+    }
+    h3{
+        font-family: OpenSans;
+        font-size: 12pt;
+        color: white;
+        opacity: 0.75;
+    }
+    h4{
+        font-size: 20pt;
+        color: white;
+        margin-top: 60px;
+        margin-bottom: 20px;
+    }
+    p{
+        font-family: OpenSans;
+        font-size: 16pt;
+        color: white;
+        margin-top: 30px;
+    }
+    .parallax-container {
+        min-height: 400px;
+        background: transparent;
+    }
+    body{
+        background-color: #ebeced;;
+    }
+    div.button{
+        height: 80px;
+        width: 180px;
+        border: 5px solid white;
+    }
+    div.contact{
+        text-align: center;
+        height: 200px;
+        width:200px;
+        border: 8px solid white;
+    }
+    .fixed-nav-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        width: 100%;
+    }
+    div.button:hover .glyphicon, .glyphicon:hover{
+        transition: color .5s ease-out;
+        color: black !important;
+        opacity: 0.66;
+    }
+    div.button:hover{
+        background-color: rgba(255,255,255,0.5);
+        border: 5px solid rgba(255,255,255,0);
+        transition: background-color 0.4s ease-out, border 0.4s ease-out;
+    }
+    #sponsors{
+        text-align: justify;
+    }
+    #sponsors:after{
+        content: '';
+        width:100%;
+        display: inline-block;
+        font-size: 0;
+        line-height: 0;
+    }
+    div.sponsor{
+        display: inline-block;
+        text-align: center;
+    }
+    .logo{
+        height: 100px;
+        width: 92.5px;
+        background-color: #e74d45;
+        margin-right: 92.5px;
+        float: right
+    }
+    div.btnAng{
+        background-color: #e74d45;
+        transform:skew(-20deg, 0deg);
+        width: 50px;
+        height: 44px;
+        display: inline-block;
+        float: left;
+    }
+    div.btnCor{
+        background-color: #e74d45;
+        position: absolute;
+        padding-left: 10px;
+        padding-top: 4px;
+        height: 44px;
+        width: 30px;
+        transform: skew(20deg, 0deg);
+    }
+    .menuContainer {
+        display: inline-block;
+        cursor: pointer;
+        position: absolute;
+    }
+
+    .bar1, .bar2, .bar3 {
+        width: 33px;
+        height: 4px;
+        background-color: #1a212c;
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+    .bar2{
+        width: 28px;
+    }
+    .bar3{
+        width: 24px;;
+    }
+    .header{
+        height: 44px;
+        width: 100%;
+        background-color: #1a212c;
+        display: inline-block;
+        display: none;
+        transition: 0.3s;
+        position: absolute;
+        z-index:-99;
+    }
+    .change .bar1 {
+        -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+        transform: rotate(-45deg) translate(-9px, 6px) ;
+    }
+
+    .change .bar2 {opacity: 0;}
+
+    .change .bar3 {
+        width: 33px;
+        -webkit-transform: rotate(45deg) translate(-8px, -6px) ;
+        transform: rotate(45deg) translate(-8px, -6px) ;
+    }
+    ul{
+        list-style-type: none;
+    }
+    li{
+        float: left;
+    }
+    li a{
+        display: inline-block;
+        font-family: OpenSans;
+        font-size: 11pt;
+        color:rgba(255,255,255,0.7);
+        text-decoration: none;
+        padding-left: 50px;
+        padding-top: 10px;
+    }
+    li a:hover{
+        color: rgba(225,225,225,1);
+        text-decoration: none;
+    }
+    li a.active{
+        color:rgba(225,225,225,1);
+    }
+    body{
+        background-color: #222222;
+    }
+    @font-face {
+        font-family: CodeLight;
+        src: url(Fonts/code-light/CODE-Light.otf);
+    }
+    p.logoFooter{
+        font-family: CodeLight;
+        font-size: 11pt;
+        color: #1d1f2b;
+        font-weight: bolder;
+        text-align: center;
+        margin-top: 6px;
+    }
+    .logo{
+        height: 100px;
+        width: 92.5px;
+        background-color: #e74d45;
+        margin-right: 92.5px;
+        float: right;
+        padding-top: 11px;
+    }
+</style>
+<script>
+    function menu(x){
+        x.classList.toggle("change");
+        $('.header').toggle();
+    }
+</script>
+<body>
+<nav class="fixed-nav-bar">
+    <div class="row">
+        <div class="menuContainer" onclick="menu(this)">
+            <div class="btnAng">
+                <div class="btnCor">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="header">
+            <ul>
+                <li><a href="home.html">HOME</a></li>
+                <li><a href="fpost.html"> FEATURED POST</a></li>
+                <li><a href="blog.html">BLOG</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
+            </ul>
+        </div>
+    </div>
+    <a href="home.html">
+        <div class="logo">
+            <img src="images/backing/logoImg.png" style="display: block; margin: auto">
+            <p class="logoFooter">CONNOR BYRNE</p>
+        </div>
+    </a>
+</nav>
+
+<div class=".container">
+    <div class="row" style="height: 130px; background-color: #222222;"></div>
+    <div class="row" style="height: 80px; background-color: #222222">
+        <div class="col-md-8 col-md-offset-1" style="background-color: #e74d45; opacity:0.9; height: 80px">
+            <div class="col-md-12">
+                <div class="row" style="height: 80px;">
+                    <div class="col-md-7 col-md-offset-1">
+                        <h2>COMPETITION BLOG</h2>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class=".container">
+    <div class="row" style="height: 2000px;">
+        <div class="col-md-12">
+            <div class="parallax-container" data-parallax="scroll" data-position="top" data-bleed="100" data-image-src="./images/backing/EUG1400.png" data-natural-width="1920" data-natural-height="1400" style="height: 2000px;">
+                <div class="col-md-8 col-md-offset-1" style="background-color: rgba(231,77,69,0.9);min-height: 2000px;">
+                    <div class="col-md-12">
+                        <div class="col-md-7 col-md-offset-1">
+                            <div class="row" style="height: 40px">
+                                <h3>12th January 2017</h3>
+                            </div>
+                            <div class="row" style="height: 80px; margin-bottom: 20px; display: inline-block">
+                                <h1>EUROPEAN UNIVERSITY GAMES</h1>
+                            </div>
+                            <div class="row">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia posuere enim eget porta. Maecenas lobortis id tortor id laoreet.
+                                </p>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia posuere enim eget porta. Maecenas lobortis id tortor id laoreet.
+                                </p>
+                                <img src="images/backing/EUGThumb1.png" style="margin-top: 30px; margin-bottom: 15px; opacity: 1;">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia posuere enim eget porta. Maecenas lobortis id tortor id laoreet.
+                                </p>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia posuere enim eget porta. Maecenas lobortis id tortor id laoreet.
+                                </p>
+                                <h4> SUBHEADING</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia posuere enim eget porta. Maecenas lobortis id tortor id laoreet.
+                                </p>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia posuere enim eget porta. Maecenas lobortis id tortor id laoreet.
+                                </p>
+                                <img src="images/backing/EUGThumb2.png" style="margin-top: 30px; margin-bottom: 15px; opacity: 1;">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia posuere enim eget porta. Maecenas lobortis id tortor id laoreet.
+                                </p>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia posuere enim eget porta. Maecenas lobortis id tortor id laoreet.
+                                </p>
+                            </div>
+                            <div class="row" style="height: 100px; padding-top: 30px; margin-bottom: 20px;">
+                                <a href="blog.html">
+                                    <div class="button">
+                                        <span class="glyphicon glyphicon-menu-left" style="font-size: 26pt; margin-top: 18px; margin-left: 10px; color: white;"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class=".container">
+    <div class="row">
+        <div class="col-md-12" style="background-color: #222f3f; padding-top: 30px; padding-bottom: 20px; padding-right: 150px; padding-left: 150px;">
+            <div id="sponsors">
+                <div class="sponsor">
+                    <img src="images/backing/evolv-logo.png" style="width: 100px;">
+                </div>
+                <div class="sponsor">
+                    <img src="images/backing/Metolius_Logo_BW.png" style="width: 100px;">
+                </div>
+                <div class="sponsor">
+                    <img src="images/backing/prana-id-c6455b3cd8762a22.jpg.png" style="width: 100px;">
+                </div>
+                <div class="sponsor">
+                    <img src="images/backing/SportSheff.png" style="width: 100px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class=".container">
+    <div class="row" style="height: 60px; background-color: #222222;"></div>
+</div>
+</body>
+</html>
